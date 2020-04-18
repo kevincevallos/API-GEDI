@@ -33,6 +33,54 @@ let subirPdf =async (req, res) => {
     
 }
 
+//SetDocumentoCode
+let setDocumentoCode =async (req, res) => {
+    id = req.body.idUsuario
+    codigoDoc = req.body.codigoDocumento
+    codigoUsr = req.body.codigoUsuario
+    console.log('id y códigos_: ',id, codigoDoc, codigoUsr)
+
+    let datos = [{idUsuario:id,codigo_user:codigoUsr,
+                  codigo_documento:codigoDoc}]
+
+    await db('documentos').insert(datos).then(registros =>{
+        return res.status(200).json({
+            ok: true,
+            mensaje: 'documentoCode Guardado!'
+        })
+    })
+    .catch(error =>{
+       
+        return res.status(500).json({
+            ok: false,
+            error
+        })
+    })
+    
+}
+//SetDocumentoNonCode
+let setDocumentoNonCode =async (req, res) => {
+    id = req.body.idUsuario
+    codigoDoc = req.body.codigoDocumento
+    console.log('id y código_: ',id, codigoDoc)
+    let datos = [{idUsuario:id,codigo_documento:codigoDoc}]
+
+    await db('documentos').insert(datos).then(registros =>{
+        return res.status(200).json({
+            ok: true,
+            mensaje: 'documentoNonCode Guardado!'
+        })
+    })
+    .catch(error =>{
+       
+        return res.status(500).json({
+            ok: false,
+            error
+        })
+    })
+    
+}
+
 let verPdf = (req,res) =>{
     let pdf = req.params.pdf
     let rutaPdf = `./pdfDirectorio/${pdf}`
@@ -60,7 +108,9 @@ let getPdf=(req,res)=>{
 module.exports ={
 subirPdf,
 verPdf,
-getPdf
+getPdf,
+setDocumentoCode,
+setDocumentoNonCode
 
 
 }
