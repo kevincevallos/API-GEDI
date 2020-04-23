@@ -11,7 +11,7 @@ let subirPdf =async (req, res) => {
     let codUser = req.body.codUser
     let codDoc = req.body.codDoc
     
-    console.log(idUser,codDoc,codUser)
+    console.log('Data',idUser,codDoc,codUser, req.files.upload)
     let files = req.files.upload
     let url = files.path
     console.log(url)
@@ -60,6 +60,7 @@ let subirPdf =async (req, res) => {
     
 }
 
+//Traeme documento del path
 let verPdf = (req,res) =>{
     let pdf = req.params.pdf
     let rutaPdf = `./pdfDirectorio/${pdf}`
@@ -73,6 +74,7 @@ let verPdf = (req,res) =>{
     })
 }
 
+//Devuelve documento donde el código sea igual al del front
 let getPdf=(req,res)=>{
     let cond = req.body.cond//{"cond":"ACTA o Soli con =>% al final"}
 
@@ -144,7 +146,53 @@ deletePdf = (req,res) =>{
         
 }
     
+//SetDocumentoCode
+let setDocumentoCode =async (req, res) => {
+    id = req.body.idUsuario
+    codigoDoc = req.body.codigoDocumento
+    codigoUsr = req.body.codigoUsuario
+    console.log('id y códigos_: ',id, codigoDoc, codigoUsr)
 
+    let datos = [{idUsuario:id,codigo_user:codigoUsr,
+                  codigo_documento:codigoDoc}]
+
+    await db('documentos').insert(datos).then(registros =>{
+        return res.status(200).json({
+            ok: true,
+            mensaje: 'documentoCode Guardado!'
+        })
+    })
+    .catch(error =>{
+       
+        return res.status(500).json({
+            ok: false,
+            error
+        })
+    })
+    
+}
+//SetDocumentoNonCode
+let setDocumentoNonCode =async (req, res) => {
+    id = req.body.idUsuario
+    codigoDoc = req.body.codigoDocumento
+    console.log('id y código_: ',id, codigoDoc)
+    let datos = [{idUsuario:id,codigo_documento:codigoDoc}]
+
+    await db('documentos').insert(datos).then(registros =>{
+        return res.status(200).json({
+            ok: true,
+            mensaje: 'documentoNonCode Guardado!'
+        })
+    })
+    .catch(error =>{
+       
+        return res.status(500).json({
+            ok: false,
+            error
+        })
+    })
+    
+}
 
 module.exports ={
 

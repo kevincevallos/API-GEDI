@@ -15,6 +15,7 @@ let api = express.Router()
   api.post('/leerInstitutos', usuariosControl.leerInstitutos)
   api.get('/leerRoles', usuariosControl.leerRoles)
   api.get('/leerCarrerasxUsuario', usuariosControl.leerCarrerasxUsuario)
+  api.get('/getDocumentos', usuariosControl.getDocumentos)
   api.post('/login', usuariosControl.login)
   api.post('/findById', usuariosControl.findById)
   api.post('/updateById', usuariosControl.updateById)
@@ -24,7 +25,6 @@ let api = express.Router()
   api.post('/getPdf', pdfControl.getPdf)
   api.put('/putPdf', pdfControl.updatePdf)
   api.put('/deletePdf', pdfControl.deletePdf)
-  //api.get('/leerInstituto', usuariosControl.leerTabla)
   
 
 module.exports = api

@@ -314,6 +314,21 @@ let modificarRegistro = (req, res) => {
             })
         })
 }
+//getDocumentos
+let getDocumentos = (req, res) => {
+    //console.log('GetUsuarios')
+    db.select('*').from('documentos')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
 
 
 module.exports = {
@@ -329,5 +344,6 @@ module.exports = {
     login,
     findById,
     updateById,
-    leerCarrerasxUsuario
+    leerCarrerasxUsuario,
+    getDocumentos
 }
