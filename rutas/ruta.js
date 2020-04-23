@@ -20,6 +20,8 @@ let api = express.Router()
   api.post('/findById', usuariosControl.findById)
   api.post('/updateById', usuariosControl.updateById)
   api.post('/subir-pdf', multipartPdf ,pdfControl.subirPdf)
+  api.post('/setDocumentoCode', pdfControl.setDocumentoCode)
+  api.post('/setDocumentoNonCode', pdfControl.setDocumentoNonCode)
   api.get('/verpdf/:pdf', pdfControl.verPdf)
   //http://localhost:3000/server/verpdf/tQXtkSDmiOoBGBdxSBLgKxfn.pdf para que puedan probar con postman o desde el navegador 
   api.post('/getPdf', pdfControl.getPdf)

@@ -18,6 +18,22 @@ let leerUsuarios = (req, res) => {
             })
         })
 }
+//getDocumentos
+let getDocumentos = (req, res) => {
+    //console.log('GetUsuarios')
+    db.select('*').from('documentos')
+        .then(registros => {
+            return res.status(200).json(
+                registros
+            )
+        })
+        .catch(error => {
+            return res.status(404).json({
+                datos: error
+            })
+        })
+}
+
 let login = (request, response) => {
     console.log('LOGIN', request.body.clave)
     user = request.body.correo,
