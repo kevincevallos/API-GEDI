@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "formdata-node": "^2.1.1heroku ps --remote staging",
-    "knex": "^0.16.5",
+    "knex": "^0.19.5",
     "multi-part": "^3.0.0",
     "multiparty": "^4.2.1",
     "path": "^0.12.7",
