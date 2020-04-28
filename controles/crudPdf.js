@@ -11,7 +11,7 @@ let subirPdf =async (req, res) => {
     let codUser = req.body.codUser
     let codDoc = req.body.codDoc
     
-    console.log(idUser,codDoc,codUser)
+    console.log('Data',idUser,codDoc,codUser, req.files.upload)
     let files = req.files.upload
     let url = files.path
     console.log(url)
@@ -60,6 +60,7 @@ let subirPdf =async (req, res) => {
     
 }
 
+//Traeme documento del path
 let verPdf = (req,res) =>{
     let pdf = req.params.pdf
     let rutaPdf = `./pdfDirectorio/${pdf}`
@@ -72,7 +73,6 @@ let verPdf = (req,res) =>{
         }
     })
 }
-
 
 let getPdf=(req,res)=>{
     let cond = req.body.cond//{"cond":"ACTA o Soli con =>% al final"}
