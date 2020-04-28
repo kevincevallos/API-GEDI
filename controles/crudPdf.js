@@ -15,7 +15,7 @@ let subirPdf =async (req, res) => {
     let files = req.files.upload
     let url = files.path
     console.log(url)
-    urlPdf = url.split('/')
+    urlPdf = url.split('\\')
     console.log('---------------')
     console.log(urlPdf[1])
     let pathPdf = urlPdf[1]
@@ -100,20 +100,20 @@ updatePdf= async (req, res) => {
     let files = req.files.upload
     let url = files.path
     let fecha = new Date()
-    console.log(url)
+    console.log('Primer console_: ',url)
     urlPdf = url.split('\\')
     console.log('---------------')
-    console.log(urlPdf[1])
+    console.log('Segundo console_: ',urlPdf[1])
     pathPdf = urlPdf[1]
-    console.log(pathPdf)
-    console.log(cod)
-    console.log(fecha)
+    console.log('Tercer console_: ',pathPdf)
+    console.log('Cuarto console_: ',cod)
+    console.log('Quinto console_: ',fecha)
 
     
     await db.select('path').from('documentos').where({codigo_documento:cod})
     .then(registro =>{
         let pdf = registro[0].path
-        console.log(pdf)
+        console.log('Entra al select path from documentos_: ',pdf)
         let rutaPdf = `./pdfDirectorio/${pdf}`
 
     fs.unlink(rutaPdf, (error) =>{
